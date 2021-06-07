@@ -1,0 +1,7 @@
+.sidenav {
+  width: 480px;
+  -ms-flex-preferred-size: 480px;
+      flex-basis: 480px;
+  padding: 1rem;
+}
+/*# sourceMappingURL=SideList.module.css.map */

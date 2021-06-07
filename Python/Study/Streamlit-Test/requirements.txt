@@ -1,0 +1,5 @@
+streamlit
+altair
+yfinance
+pandas
+vega_datasets

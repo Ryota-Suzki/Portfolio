@@ -1,0 +1,23 @@
+.wrap {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  padding: 1rem;
+}
+
+.wrap p {
+  color: white;
+}
+
+.wrap pre {
+  color: white;
+  line-height: 1.8rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.wrap a {
+  color: #3ea6ff;
+}
+/*# sourceMappingURL=VideoDetail.module.css.map */

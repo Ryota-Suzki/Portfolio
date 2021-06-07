@@ -1,0 +1,5 @@
+azure.cognitiveservices.vision.computervision.models
+PIL
+configparser
+pathlib
+glob

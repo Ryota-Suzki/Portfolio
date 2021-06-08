@@ -8,8 +8,8 @@
 
 # Demo
 ・実行ファイル作成日(2021/04/11)
- ![実行前](https://github.com/Ryota-Suzki/Portfolio/blob/images/before.JPG)
- ![実行後](https://github.com/Ryota-Suzki/Portfolio/blob/images/after.JPG)
+ ![実行前](https://github.com/Ryota-Suzki/Portfolio/blob/img/before.JPG)
+ ![実行後](https://github.com/Ryota-Suzki/Portfolio/blob/img/after.JPG)
  
 # Features
  複数のExcelファイルにて、同じログデータを管理していたため手動で行うと年間で膨大な時間を費やす事となっていた上  

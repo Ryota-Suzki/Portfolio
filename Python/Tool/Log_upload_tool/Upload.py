@@ -1,22 +1,25 @@
 # -*- coding: utf-8 -*-
+import Download
+import svn
 import os
-import boto3
 import pathlib
 import glob
 import re
 import datetime
-from datetime import datetime as dt, date, timezone, timedelta
-from boto3 import client
-import gzip
-import zipfile
 from dateutil.relativedelta import relativedelta
 import configparser
 from boto3.session import Session
 
+# Download　実行
+Download.download_file()
+
+# svn 実行
+svn.svn_commit()
+
 path_join = ""
 
 path = pathlib.Path().absolute()   # test.pyのあるディレクトリ
-path /= '../../../●●●●●●/'     # ディレクトリ移動
+path /= '●●●●●●/'     # ディレクトリ移動
 
 config_path = path_join.join(glob.glob(str(path) + "/config.ini"))
 
@@ -28,8 +31,8 @@ secret_key = config_ini["セクション名"]["キー"] # aws secret key
 
 session = Session(aws_access_key_id = id,aws_secret_access_key = secret_key)
 
-zip_list = (glob.glob("*.zip")) #zipファイルのリスト作成
-gz_list = (glob.glob("*.gz")) #gzファイルのリスト作成
+zip_list = (glob.glob(Download.save_path + "/*.zip")) #zipファイルのリスト作成
+gz_list = (glob.glob(Download.save_path + "*.gz")) #gzファイルのリスト作成
 
 file_creating_date = path_join.join((re.findall("●●●●●●(.*).zip",path_join.join(zip_list[0])))) #ファイル作成年月日
 
@@ -107,5 +110,3 @@ delete_all_keys(client_bucket, prefix, True) #ログ削除関数
 UploadFile(zip_list) #フォルダアップロード関数
 UploadFile(gz_list)
 
-Decompression(gz_list) #フォルダ解凍関数
-Decompression(zip_list)

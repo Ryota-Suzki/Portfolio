@@ -30,37 +30,43 @@ d_yesterday = d_today - timedelta(days=1) #前日
 webdav_folder = datetime.strftime(d_today,"%Y%m%d") #WebDAVフォルダ名
 local_folder = (datetime.strftime(d_yesterday,"%Y%m%d")) #ローカルフォルダ名
 
-try:
-    os.makedirs(local_folder)
-except:
-    pass
+save_path = parent_folder + "/" + sub_folder + "/" + local_folder
 
-# 送信先のURL
-for num in range(len(file_list)):
-
-    if "xxxxx" in file_list[num]:
-        file_path = file_list[num] + datetime.strftime(d_yesterday,"%Y-%m-%d") + ".zip"
-
-    elif  "xxxxx" in file_list[num]:
-        file_path = file_list[num] + datetime.strftime(d_yesterday,"%Y%m%d") + ".gz"
-
-    print("ダウンロード済:" + file_path)
-
-    url = conf_get_url.format(datetime.strftime(d_yesterday,"%Y"),datetime.strftime(d_yesterday,"%Y-%m"),webdav_folder,file_path)
-
-    # Basic認証用の文字列を作成.
-    basic = base64.b64encode('{}:{}'.format(user, password).encode('utf-8'))
-
-    # Basic認証付きの、GETリクエストを作成する.
-    request = urllib.request.Request(url,headers={"Authorization": "Basic " + basic.decode('utf-8')})
-
-    save_name = local_folder +"/" + file_path
-
-    # 送信して、レスポンスを受け取る.
+def download_file():
     try:
-        with urllib.request.urlopen(request) as web_file:
-            data = web_file.read()
-            with open(save_name, mode='wb') as local_file:
-                local_file.write(data)
-    except urllib.error.URLError as e:
-            print(e)
+        os.makedirs(save_path)
+    except:
+        pass
+
+    # 送信先のURL
+    for num in range(len(file_list)):
+
+        if "xxxx" in file_list[num]:
+            file_path = file_list[num] + datetime.strftime(d_yesterday,"%Y-%m-%d") + ".zip"
+
+        elif  "xxxx" in file_list[num]:
+            file_path = file_list[num] + datetime.strftime(d_yesterday,"%Y%m%d") + ".gz"
+
+        print("ダウンロード済:" + file_path)
+
+        url = conf_get_url.format(datetime.strftime(d_yesterday,"%Y"),datetime.strftime(d_today,"%Y-%m"),webdav_folder,file_path)
+        print(url)
+        # Basic認証用の文字列を作成.
+        basic = base64.b64encode('{}:{}'.format(user, password).encode('utf-8'))
+
+        # Basic認証付きの、GETリクエストを作成する.
+        request = urllib.request.Request(url,headers={"Authorization": "Basic " + basic.decode('utf-8')})
+
+        save_name = parent_folder + "/" + sub_folder + "/" + local_folder +"/" + file_path
+
+        # 送信して、レスポンスを受け取る.
+        try:
+            with urllib.request.urlopen(request) as web_file:
+                data = web_file.read()
+                with open(save_name, mode='wb') as local_file:
+                    local_file.write(data)
+        except urllib.error.URLError as e:
+                print(e)
+                
+if __name__ == '__main__':
+    download_file()

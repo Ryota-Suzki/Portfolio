@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+リストです。
+{% endblock header %}
+
+{% block content %}
+{% for item in object_list %}
+
+<div class="alert alert-secondary" role="alert">
+    {{ item.title }}
+</div>
+<div class="alert alert-secondary" role="alert">
+    {{ item.memo }}
+</div>
+
+{% endfor %}
+{% endblock content %}
